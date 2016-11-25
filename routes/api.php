@@ -36,4 +36,9 @@ $api->version('v1', function (Router $api) {
             'message' => 'This is a simple example of item returned by your APIs. Everyone can see it.'
         ]);
     });
+    $api->group(['middleware' => 'api.auth'], function ($api) {
+    $api->get('v1/credentials', 'App\Api\V1\Controllers\CredentialsController@index');
+    //$api->get('v1/book', 'App\Api\V1\Controllers\BookController@index');
+    $api->get('v1/credentials/{id}', 'App\Api\V1\Controllers\CredentialsController@credentials');
+});
 });
